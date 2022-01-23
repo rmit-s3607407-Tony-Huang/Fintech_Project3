@@ -41,38 +41,38 @@ contract Tracking {
         _;
     }
 
-    // Store percel and tracking information in IPFS file
+    // Store parcel and tracking information in IPFS file
     struct TrackingInfo {  
-        string percelUri;
+        string parcelUri;
         string statusUri;
     }
 
-    uint percelId;
-    mapping (uint => TrackingInfo) public percel;   // Manage percels by id
+    uint parcelId;
+    mapping (uint => TrackingInfo) public parcel;   // Manage parcels by id
 
-    event percelRegistered (uint percelId, string percelUri);
+    event parcelRegistered (uint parcelId, string parcelUri);
 
-    // Register new percel (add uri for percel)
-    function registerPercel (string memory _percelUri, uint role_id) public onlyCourierOrAdmin (role_id) {   
-        percel[percelId].percelUri = _percelUri;
-        emit percelRegistered (percelId, _percelUri);
-        percelId ++;
+    // Register new parcel (add uri for parcel)
+    function registerParcel (string memory _parcelUri, uint role_id) public onlyCourierOrAdmin (role_id) {   
+        parcel[parcelId].parcelUri = _parcelUri;
+        emit parcelRegistered (parcelId, _parcelUri);
+        parcelId ++;
 
     }
 
-    event statusUpdated (uint percelId, string statusUri);
+    event statusUpdated (uint parcelId, string statusUri);
 
     // Update tracking status (add uri for status)
-    function trackingUpdated (uint _percelId, string memory _statusUri, uint role_id) public onlyCourierOrAdmin (role_id) {
-        percel[_percelId].statusUri = _statusUri;
-        emit statusUpdated (_percelId, _statusUri);
+    function trackingUpdated (uint _parcelId, string memory _statusUri, uint role_id) public onlyCourierOrAdmin (role_id) {
+        parcel[_parcelId].statusUri = _statusUri;
+        emit statusUpdated (_parcelId, _statusUri);
     }
 
-    event track (string _percel, string _status);
+    event track (string _parcel, string _status);
 
     // Tack shipping status
-    function trackPercel (uint _percelId, uint role_id) public onlyCourierOrCustomerOrAdmin (role_id) {
-        emit track (percel[_percelId].percelUri, percel[_percelId].statusUri);
+    function trackParcel (uint _parcelId, uint role_id) public onlyCourierOrCustomerOrAdmin (role_id) {
+        emit track (parcel[_parcelId].parcelUri, parcel[_parcelId].statusUri);
     }
 
 }

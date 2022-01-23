@@ -1,4 +1,4 @@
-const contract_address = "0x3b89550839DbBBFc2b1c3480Bd8f3F4F4C9e6e82";
+const contract_address = "0x957A89C95968C7641c119b53824e189a34908d22";
 
 const dApp = {
   ethEnabled: function() {
