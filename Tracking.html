@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <tilte>Tracking Dapp</tilte>
+    </head>
+    <body>
+        <div id="functions1">
+            <div id="addCourier">
+                <h3>Add Couriers</h3>
+                <label for="caller1">Caller Address</label>
+                <input type="text" id="caller1"/>  
+                <label for="courier">Courier Address</label>
+                <input type="text" id="courier"/>
+                <button id="buttonAddCourier">Add</button>
+            </div>
+            <div id="addCustomers">
+                <h3>Add Customers</h3>
+                <label for="caller2">Caller Address</label>
+                <input type="text" id="caller2"/>  
+                <label for="customer">Customer Address</label>
+                <input type="text" id="customer"/>
+                <button id="buttonAddCustomer">Add</button>
+            </div>
+        </div>
+        <div id="register">
+            <h3>Register Parcel</h3>
+            <label for="caller3">Caller Address</label>
+            <input type="text" id="caller3"/>
+            <label for="parcelUri">Percel URI</label>
+            <input type="text" id="parcelUri">
+            <label for="roleId1">Courier ID</label>
+            <input type="number" id="roleId1">
+            <button id="registerParcel">Regsiter</button>
+        </div>
+        <div id="update">
+            <h3>Update Shippint Status</h3>
+            <label for="caller4">Caller Address</label>
+            <input type="text" id="caller4"/>
+            <label for="parcelId1">Percel ID</label>
+            <input type="number" id="parcelId1">
+            <label for="statusUri">Status URI</label>
+            <input type="text" id="statusUri">
+            <label for="roleId2">Courier ID</label>
+            <input type="number" id="roleId2">
+            <button id="updateStatus">Update</button>
+        </div>
+        <div id="view">
+            <h3>Track Parcel</h3>
+            <label for="caller5">Caller Address</label>
+            <input type="text" id="caller5"/>
+            <label for="parcelId2">Percel ID</label>
+            <input type="number" id="parcelId2">
+            <label for="roleId3">Courier/Customer ID</label>
+            <input type="number" id="roleId3">
+            <button id="viewStatus">View</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/web3@1.2.5-rc.0/dist/web3.min.js" integrity="sha256-ZjUHyLZZWkQPbWfRjTSmGtfcTSOermVT6f/CvJW2RY4=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="./TrackingDapp.js"></script>
+    </body>
+</html>
+
