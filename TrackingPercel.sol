@@ -19,13 +19,19 @@ contract Tracking {
         _;
     }
 
+    event renderCourierId(address _courier, uint _courierId);
+
     function addCourier (address courier) public onlyAdmin {   // Add couriers
         couriers[courierId] = courier;
+        emit renderCourierId(courier, courierId);
         courierId ++;
     }
 
+    event renderCustomerId(address _customer, uint _customerId);
+
     function addCustomer (address customer) public onlyAdmin {  // Add customers
         customers[customerId] = customer;
+        emit renderCustomerId(customer, customerId);
         customerId ++;
     }
 
