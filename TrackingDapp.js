@@ -1,4 +1,4 @@
-const contract_address = "0xb80bc6D31e496b40767bf69f1C3270bB2a5aB0af";
+const contract_address = "0x7165F55f2fe21f68B54186e5Af173e1c4dC593D6";
 
 const dApp = {
   
@@ -25,10 +25,16 @@ const dApp = {
 	document.querySelector("#buttonAddCourier").addEventListener('click', () => {
 		this.contract.methods.addCourier(courier).send({from: walletAddress}).on(
 			'receipt', function(receipt){
-				alert("Successfully courier added")
+				alert("Successfully courier added");
 			}
 		)
+		this.contract.events.renderCourierId({fromBlock: 0}).on('data', function(event) {
+			const selectElement = document.querySelector('#addCourierLog');
+			selectElement.innerHTML = event.returnValues["_courierId"]
+		})
+			
 	})
+	
 
 	let customer;
 	document.querySelector("#customer").addEventListener('input', (event) => {
@@ -41,6 +47,10 @@ const dApp = {
 				alert("Successfully customer added")
 			}
 		)
+		this.contract.events.renderCustomerId({fromBlock: 0}).on('data', function(event) {
+			const selectElement = document.querySelector('#addCustomerLog');
+			selectElement.innerHTML = event.returnValues["_customerId"]
+		})
 	})
 
 	let parcelUri;
@@ -59,6 +69,11 @@ const dApp = {
 				alert("Successfully parcel registered")
 			}
 		)
+		this.contract.events.parcelRegistered({fromBlock: 0}).on('data', function(event) {
+			console.log(event.returnValues["parcelId"])
+			const selectElement = document.querySelector('#parcelLog');
+			selectElement.innerHTML = event.returnValues["parcelId"];
+		})
 	})
 
 
@@ -96,9 +111,13 @@ const dApp = {
 	document.querySelector("#viewStatus").addEventListener('click', () => {
 		this.contract.methods.trackParcel(parcelId2, roleId3).send({from: walletAddress}).on(
 			'receipt', function(receipt){
-				alert("Successfully tracking status updated")
-			}
-		)
+				
+			})
+		this.contract.events.track({fromBlock: 0}).on('data', function(event) {
+			const selectElement2 = document.querySelector('#statusLog');
+			selectElement2.innerHTML = event.returnValues['_status'];
+
+		})
 	})
 
 
