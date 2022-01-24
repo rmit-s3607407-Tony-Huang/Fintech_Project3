@@ -1,4 +1,4 @@
-const contract_address = "0x31c8c933e999BAd0E0c47366818866AF783502c4";
+const contract_address = "0xb80bc6D31e496b40767bf69f1C3270bB2a5aB0af";
 
 const dApp = {
   
@@ -94,7 +94,7 @@ const dApp = {
 	})
 
 	document.querySelector("#viewStatus").addEventListener('click', () => {
-		this.contract.methods.trackParcel(parcelId2, roleId3).send({from: this.walletAddress}).on(
+		this.contract.methods.trackParcel(parcelId2, roleId3).send({from: walletAddress}).on(
 			'receipt', function(receipt){
 				alert("Successfully tracking status updated")
 			}
