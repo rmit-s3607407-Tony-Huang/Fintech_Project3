@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <title>Tracking Dapp - Admin</title>
+  </head>
+  <body>
+    
+    <style>
+        .my-custom-row{
+            background-color:goldenrod;
+        }
+    </style>
+    <div class="container" id="functions1">
+        <h3>Add Courier</h3>
+        <div class=" row my-custom-row justify-content-center align-items-center gx-10">
+            <label for="caller1">Caller Address</label>
+            <input type="text" id="caller1"/>
+            <label for="courier">Courier Address</label>
+            <input type="text" id="courier"/>
+            <div class="col"><button type="button" class="btn btn-danger" id="buttonAddCourier">Add</button></div> 
+        </div>
+        <h3>Add Customers</h3>
+        <div class=" row my-custom-row justify-content-center align-items-center gx-10">
+            <label for="caller2">Caller Address</label>
+            <input type="text" id="caller2"/>
+            <label for="customer">Customer Address</label>
+            <input type="text" id="customer"/>
+            <div class="col"><button type="button" class="btn btn-danger" id="buttonAddCustomer">Add</button></div>
+        </div>
+    </div>
+    <div class="container" id="register">
+        <h3>Register Parcel</h3>
+        <div class=" row my-custom-row justify-content-center align-items-center gx-10">
+            <label for="caller3">Caller Address</label>
+            <input type="text" id="caller3"/>
+            <label for="parcelUri">Percel URI</label>
+            <input type="text" id="parcelUri">
+            <label for="roleId1">Courier ID</label>
+            <input type="number" id="roleId1">
+            <div class="col"><button type="button" class="btn btn-danger" id="registerParcel">Register</button></div>
+        </div>
+    </div>
+
+    <div class="container" id="update">
+        <h3>Update Shipping Status</h3>
+        <div class=" row my-custom-row justify-content-center align-items-center gx-10">
+            <label for="caller4">Caller Address</label>
+            <input type="text" id="caller4"/>
+            <label for="parcelId1">Percel ID</label>
+            <input type="number" id="parcelId1">
+            <label for="statusUri">Status URI</label>
+            <input type="text" id="statusUri">
+            <label for="roleId2">Courier ID</label>
+            <input type="number" id="roleId2">
+            <div class="col"><button type="button" class="btn btn-danger" id="updateStatus">Update</button></div>
+        </div>
+    </div>
+
+    <div class="container" id="view">
+        <h3>Track Parcel</h3>
+        <div class=" row my-custom-row justify-content-center align-items-center gx-10">
+            <label for="caller5">Caller Address</label>
+            <input type="text" id="caller5"/>
+            <label for="parcelId2">Percel ID</label>
+            <input type="number" id="parcelId2">
+            <label for="roleId3">Courier/Customer ID</label>
+            <input type="number" id="roleId3">
+            <div class="col"><button type="button" class="btn btn-danger" id="viewStatus">View</button></div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Track Parcel
+            </button>
+        </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  </body>
+</html>
