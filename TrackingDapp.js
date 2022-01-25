@@ -1,4 +1,4 @@
-const contract_address = "0x7165F55f2fe21f68B54186e5Af173e1c4dC593D6";
+const contract_address = "0x857F15AEAa6c54eE088Be09E0780951ecD23Eed8";
 
 const dApp = {
   
@@ -49,8 +49,9 @@ const dApp = {
 		)
 		this.contract.events.renderCustomerId({fromBlock: 0}).on('data', function(event) {
 			const selectElement = document.querySelector('#addCustomerLog');
-			selectElement.innerHTML = event.returnValues["_customerId"]
+			selectElement.innerHTML = event.returnValues["_customerId"]	
 		})
+		
 	})
 
 	let parcelUri;
@@ -110,14 +111,23 @@ const dApp = {
 
 	document.querySelector("#viewStatus").addEventListener('click', () => {
 		this.contract.methods.trackParcel(parcelId2, roleId3).send({from: walletAddress}).on(
-			'receipt', function(receipt){
-				
+			'receipt', function(receipt){	
 			})
-		this.contract.events.track({fromBlock: 0}).on('data', function(event) {
-			const selectElement2 = document.querySelector('#statusLog');
-			selectElement2.innerHTML = event.returnValues['_status'];
-
+		
+		const view = document.querySelector("#view");
+		let container = `<div id="container"></div> `;
+		view.insertAdjacentHTML('afterend', container);
+		container = document.querySelector("#container")
+		this.contract.events.track().on('data', function(event) {
+			const child = document.createElement('div');
+			child.innerHTML = event.returnValues['status'];
+			container.appendChild(child);
+			console.log(event.returnValues['status']);
 		})
+		setTimeout(() => {
+			container.remove();
+		}, 10000)
+	
 	})
 
 
