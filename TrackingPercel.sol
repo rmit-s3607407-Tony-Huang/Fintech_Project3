@@ -47,10 +47,11 @@ contract Tracking {
         _;
     }
 
+    uint statusId;
     // Store parcel and tracking information in IPFS file
     struct TrackingInfo {  
         string parcelUri;
-        string statusUri;
+        mapping (uint => string) status;
     }
 
     uint parcelId;
@@ -70,15 +71,18 @@ contract Tracking {
 
     // Update tracking status (add uri for status)
     function trackingUpdated (uint _parcelId, string memory _statusUri, uint role_id) public onlyCourierOrAdmin (role_id) {
-        parcel[_parcelId].statusUri = _statusUri;
+        parcel[_parcelId].status[statusId] = _statusUri;
         emit statusUpdated (_parcelId, _statusUri);
+        statusId ++;
     }
 
-    event track (string _parcel, string _status);
+    event track (string status);
 
     // Tack shipping status
     function trackParcel (uint _parcelId, uint role_id) public onlyCourierOrCustomerOrAdmin (role_id) {
-        emit track (parcel[_parcelId].parcelUri, parcel[_parcelId].statusUri);
+        for (uint i = 0; i < statusId; i++){
+            emit track(parcel[_parcelId].status[i]);
+        }
     }
 
 }

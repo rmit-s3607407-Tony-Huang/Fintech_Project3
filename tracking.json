@@ -87,13 +87,7 @@
 			{
 				"indexed": false,
 				"internalType": "string",
-				"name": "_parcel",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "_status",
+				"name": "status",
 				"type": "string"
 			}
 		],
@@ -186,11 +180,6 @@
 			{
 				"internalType": "string",
 				"name": "parcelUri",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "statusUri",
 				"type": "string"
 			}
 		],
