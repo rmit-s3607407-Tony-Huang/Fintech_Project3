@@ -31,71 +31,93 @@
       <div class="row">
         <div class="col-sm-3">
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active" id="addCourier" onclick="dApp.addCourier()"> Add Couriers </a>
-            <a href="#" class="list-group-item list-group-item-action" id="viewCourier" onclick="dApp.viewCourier()">View Couriers</a>
+            <a href="#" class="list-group-item list-group-item-action" id="addCourier" onclick="dApp.addCourierStyle()"> Add Couriers </a>
+            <a href="#" class="list-group-item list-group-item-action" id="viewCourier" onclick="dApp.viewCourierStyle()">View Couriers</a>
 
-            <a href="#" class="list-group-item list-group-item-action" id="addCustomer" onclick="dApp.getCouriers()">Add Customers</a>
-            <a href="#" class="list-group-item list-group-item-action" id="viewCustomer" onclick="dApp.viewCustomer()">View Customers</a>
+            <a href="#" class="list-group-item list-group-item-action" id="addCustomer" onclick="dApp.addCustomerStyle()">Add Customers</a>
+            <a href="#" class="list-group-item list-group-item-action" id="viewCustomer" onclick="dApp.viewCustomerStyle()">View Customers</a>
 
-            <a href="#" class="list-group-item list-group-item-action" id="addParcel" onclick="dApp.addParcel()">Add Parcels</a>
-            <a href="#" class="list-group-item list-group-item-action" id="viewParcel" onclick="dApp.viewParcel()">View Parcel</a>
+            <a href="#" class="list-group-item list-group-item-action" id="addParcel" onclick="dApp.addParcelStyle()">Add Parcels</a>
+            <a href="#" class="list-group-item list-group-item-action" id="viewParcel" onclick="dApp.viewParcelStyle()">View Parcel</a>
 
-            <a href="#" class="list-group-item list-group-item-action" id="registerParcel" onclick="dApp.registerParcel()">Register Parcel</a>
-            <a href="#" class="list-group-item list-group-item-action" id="updateTracking" onclick="dApp.updateTracking()">Update Tracking</a>
-            <a href="#" class="list-group-item list-group-item-action" id="trackParcel" onclick="dApp.trackParcel()">Track Parcel</a>
+            <a href="#" class="list-group-item list-group-item-action" id="registerParcel" onclick="dApp.registerParcelStyle()">Register Parcel</a>
+            <a href="#" class="list-group-item list-group-item-action" id="updateTracking" onclick="dApp.updateTrackingStyle()">Update Tracking</a>
+            <a href="#" class="list-group-item list-group-item-action" id="trackParcel" onclick="dApp.trackParcelStyle()">Track Parcel</a>
           </div>
         </div>
 
-        <div class="col-sm-8" id="addCourierContent">
-          <h1 class="m-3 p-3">Add Couriers</h1> 
+        <div class="col collapse" id="addCourierContent">
+          <h1 class="mb-3 pb-3">Add Couriers</h1> 
           <form class="m-3 p-3">
             <div class="mb-3">
               <label for="addCourierLabel" class="form-label">Courier Address</label>
               <input type="text" class="form-control" id="addCourierLabel" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">Enter the courier address you would like to add.</div>
+              <div class="form-text mt-2">Enter the courier address you would like to add.</div>
             </div>
             <button type="submit" class="btn btn-primary" onclick=dApp.addCourier()>Add Courier</button>
+            <div class="form-text mt-2" id="addCourierResponse"></div>
           </form>
         </div>
 
 
-        <div class="col-sm-8 collapse" id="viewCourierContent">
-          <h1 class="m-3 p-3">View Couriers</h1> 
+        <div class="col collapse" id="viewCourierContent">
+          <h1 class="mb-3 pb-3">View Couriers</h1> 
+          <table class="table m-3 p-3" id="viewCourierTable">
+            <thead>
+              <tr class="table-dark"> 
+                <td>ID</td> <td>Address</td> 
+              </tr>
+            </thead>
+          </table>
+        </div>
+
+        <div class="col collapse" id="addCustomerContent">
+          <h1 class="mb-3 pb-3">Add Customers</h1> 
+          <form class="m-3 p-3">
+            <div class="mb-3">
+              <label for="addCustomerLabel" class="form-label">Customer Address</label>
+              <input type="text" class="form-control" id="addCustomerLabel" aria-describedby="emailHelp">
+              <div class="form-text mt-2">Enter the customer address you would like to add.</div>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick=dApp.addCustomer()>Add Customer</button>
+            <div class="form-text mt-2" id="addCustomerResponse"></div>
+          </form>
+        </div>
+
+        <div class="col collapse" id="viewCustomerContent">
+          <h1 class="mb-3 pb-3">View Customers</h1>
+          <table class="table m-3 p-3" id="viewCustomerTable">
+            <thead>
+              <tr class="table-dark"> 
+                <td>ID</td> <td>Address</td> 
+              </tr>
+            </thead>
+          </table>
 
         </div>
 
-        <div class="col-sm-8 collapse" id="addCustomerContent">
-          <h1 class="m-3 p-3">Add Customers</h1> 
+        <div class="col collapse" id="addParcelContent">
+          <h1 class="mb-3 pb-3">Add Parcel</h1> 
 
         </div>
 
-        <div class="col-sm-8 collapse" id="viewCustomerContent">
-          <h1 class="m-3 p-3">View Customers</h1> 
+        <div class="col collapse" id="viewParcelContent">
+          <h1 class="mb-3 pb-3">View Parcel</h1> 
 
         </div>
 
-        <div class="col-sm-8 collapse" id="addParcelContent">
-          <h1 class="m-3 p-3">Add Parcel</h1> 
+        <div class="col collapse" id="registerParcelContent">
+          <h1 class="mb-3 pb-3">Register Parcel</h1> 
 
         </div>
 
-        <div class="col-sm-8 collapse" id="viewParcelContent">
-          <h1 class="m-3 p-3">View Parcel</h1> 
+        <div class="col collapse" id="updateTrackingContent">
+          <h1 class="mb-3 pb-3">Update Tracking</h1> 
 
         </div>
 
-        <div class="col-sm-8 collapse" id="registerParcelContent">
-          <h1 class="m-3 p-3">Register Parcel</h1> 
-
-        </div>
-
-        <div class="col-sm-8 collapse" id="updateTrackingContent">
-          <h1 class="m-3 p-3">Update Tracking</h1> 
-
-        </div>
-
-        <div class="col-sm-8 collapse" id="trackParcelContent">
-          <h1 class="m-3 p-3">Track Parcel</h1> 
+        <div class="col collapse" id="trackParcelContent">
+          <h1 class="mb-3 pb-3">Track Parcel</h1> 
 
         </div>
 

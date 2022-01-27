@@ -14,7 +14,7 @@ const dApp = {
   
   adminPage: function(){
     window.location.href = 'admin.html';
-    dApp.showAddress();
+    // dApp.showAddress();
   },
 
   courierPage: function(){
@@ -75,134 +75,6 @@ const dApp = {
     //   document.getElementById("logoutButton").classList.remove("hidden");
     },
 
-  addCourier: function(){
-    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action active");
-    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-
-    // document.getElementById('addCourierContent').setAttribute("class", "col-sm-8");
-    // document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
-
-  },
-
-  viewCourier: function(){
-    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action active");
-    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-    
-    // document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8");
-    // document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
-    // document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
-  },
-
-  addCustomer: function(){
-    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action active");
-    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-  },
-
-  viewCustomer: function(){
-    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action active");
-    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-  },
-
-  addParcel: function(){
-    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action active");
-    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-  },
-
-  viewParcel: function(){
-    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action active");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-  },
-
-  registerParcel: function(){
-    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action active");
-    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-  },
-
-  updateTracking: function(){
-    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action active");
-    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-  },
-
-  trackParcel: function(){
-    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action active");
-  },
 
   isAdmin: async function(address){
     if (!this.ethEnabled()) {
@@ -281,8 +153,89 @@ const dApp = {
         this.trackingABI,
         contract_address,
     );
-    await this.contract.methods.addCourier(document.getElementById('addCourierLabel').value).send({from: sessionStorage.userAddress}).on('receipt', function(receipt){console.log(receipt)});
+    // await this.contract.methods.addCourier(document.getElementById('addCourierLabel').value).send({from: sessionStorage.userAddress}).on('receipt', function(receipt){console.log(receipt)});
+    var courierAddress = document.getElementById('addCourierLabel').value;
+    var response = await this.contract.methods.addCourier(courierAddress).send({from:sessionStorage.userAddress}).then(function(receipt){
+      console.log(receipt);
+      document.getElementById('addCourierResponse').innerHTML = 'Address added successfully.';
+    });
+    // console.log(response);
+    // const courierId = await this.contract.methods.couriers(id).call();
+    // document.getElementById('form-addCourierResponse').innerHTML = string;
   },
+
+  viewCourier: async function(){
+    if (!this.ethEnabled()) {
+      alert("Please install MetaMask to use this dApp!");
+    }
+    this.trackingABI = await (await fetch("./tracking.json")).json();
+    this.contract = new window.web3.eth.Contract(
+        this.trackingABI,
+        contract_address,
+    );
+    const courierId = await this.contract.methods.courierId().call();
+
+    var table = document.getElementById('viewCourierTable')
+    var rows = table.getElementsByTagName("tr").length
+
+    for(var j=rows-1; j>0; j--){
+      table.deleteRow(j);
+    };
+
+    for (var i=1; i<=courierId; i++){
+      var row = table.insertRow()
+      var cell = row.insertCell();
+        cell.innerHTML = i;
+        cell = row.insertCell();
+        cell.innerHTML = await this.contract.methods.couriers(i).call();;
+    };
+  },
+
+  addCustomer: async function(){
+    if (!this.ethEnabled()) {
+        alert("Please install MetaMask to use this dApp!");
+      }
+    this.trackingABI = await (await fetch("./tracking.json")).json();
+    this.contract = new window.web3.eth.Contract(
+        this.trackingABI,
+        contract_address,
+    );
+    // await this.contract.methods.addCourier(document.getElementById('addCourierLabel').value).send({from: sessionStorage.userAddress}).on('receipt', function(receipt){console.log(receipt)});
+    var customerAddress = document.getElementById('addCustomerLabel').value;
+    var response = await this.contract.methods.addCustomer(customerAddress).send({from:sessionStorage.userAddress}).then(function(receipt){
+      console.log(receipt);
+      document.getElementById('addCustomerResponse').innerHTML = 'Address added successfully.';
+    });
+
+  },
+
+  viewCustomer: async function(){
+    if (!this.ethEnabled()) {
+      alert("Please install MetaMask to use this dApp!");
+    }
+    this.trackingABI = await (await fetch("./tracking.json")).json();
+    this.contract = new window.web3.eth.Contract(
+        this.trackingABI,
+        contract_address,
+    );
+    const customerId = await this.contract.methods.customerId().call();
+
+    var table = document.getElementById('viewCustomerTable')
+    var rows = table.getElementsByTagName("tr").length
+
+    for(var j=rows-1; j>0; j--){
+      table.deleteRow(j);
+    };
+    for (var i=1; i<=customerId; i++){
+      var row = table.insertRow()
+      var cell = row.insertCell();
+        cell.innerHTML = i;
+        cell = row.insertCell();
+        cell.innerHTML = await this.contract.methods.customers(i).call();;
+    };
+  },
+
+
 
 //   parcelTracking: async function() {
 
@@ -390,6 +343,208 @@ const dApp = {
 
 
 //   },
+  addCourierStyle: function(){
+    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action active");
+    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
+
+    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8");
+    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+
+  },
+
+  viewCourierStyle: function(){
+    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action active");
+    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
+    
+    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8");
+    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+
+    dApp.viewCourier();
+  },
+
+  addCustomerStyle: function(){
+    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action active");
+    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
+
+    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+  },
+
+  viewCustomerStyle: function(){
+    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action active");
+    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
+
+    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8");
+    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+
+    dApp.viewCustomer();
+  },
+
+  addParcelStyle: function(){
+    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action active");
+    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
+
+    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8");
+    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+  },
+
+  viewParcelStyle: function(){
+    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action active");
+    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
+
+    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8");
+    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+  },
+
+  registerParcelStyle: function(){
+    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action active");
+    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
+
+    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+  },
+
+  updateTrackingStyle: function(){
+    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action active");
+    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
+
+    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8");
+    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+  },
+
+  trackParcelStyle: function(){
+    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
+    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action active");
+
+    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8");
+  },
 
   main: async function() {
     if (!this.ethEnabled()) {
@@ -411,4 +566,5 @@ const dApp = {
   }
 };
 
-// dApp.main();
+
+dApp.main();
