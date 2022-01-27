@@ -1,4 +1,4 @@
-const contract_address = "0x3135e6D60d8cd1C8A4c13ebB01aaCC0Ef2ab7CAD";
+const contract_address = "0xf129D6c8c2a8cDF532d36E765bC600b1e4879f85";
 const dApp = {
   ethEnabled: function() {
     if (window.ethereum) {
@@ -77,53 +77,53 @@ const dApp = {
 
 
   isAdmin: async function(address){
-    if (!this.ethEnabled()) {
-        alert("Please install MetaMask to use this dApp!");
-      }
-    this.trackingABI = await (await fetch("./tracking.json")).json();
-    this.contract = new window.web3.eth.Contract(
-        this.trackingABI,
-        contract_address,
-    );
+    // if (!this.ethEnabled()) {
+    //     alert("Please install MetaMask to use this dApp!");
+    //   }
+    // this.trackingABI = await (await fetch("./tracking.json")).json();
+    // this.contract = new window.web3.eth.Contract(
+    //     this.trackingABI,
+    //     contract_address,
+    // );
     const isAdmin = await this.contract.methods.isAdmin(address).call()
     console.log(isAdmin);
   },
 
   isCourier: async function(address){
-    if (!this.ethEnabled()) {
-        alert("Please install MetaMask to use this dApp!");
-      }
-    this.trackingABI = await (await fetch("./tracking.json")).json();
-    this.contract = new window.web3.eth.Contract(
-        this.trackingABI,
-        contract_address,
-    );
+    // if (!this.ethEnabled()) {
+    //     alert("Please install MetaMask to use this dApp!");
+    //   }
+    // this.trackingABI = await (await fetch("./tracking.json")).json();
+    // this.contract = new window.web3.eth.Contract(
+    //     this.trackingABI,
+    //     contract_address,
+    // );
     const isCourier = await this.contract.methods.isCourier(address).call()
     console.log(isCourier);
   },
 
   isCustomer: async function(address){
-    if (!this.ethEnabled()) {
-        alert("Please install MetaMask to use this dApp!");
-      }
-    this.trackingABI = await (await fetch("./tracking.json")).json();
-    this.contract = new window.web3.eth.Contract(
-        this.trackingABI,
-        contract_address,
-    );
+    // if (!this.ethEnabled()) {
+    //     alert("Please install MetaMask to use this dApp!");
+    //   }
+    // this.trackingABI = await (await fetch("./tracking.json")).json();
+    // this.contract = new window.web3.eth.Contract(
+    //     this.trackingABI,
+    //     contract_address,
+    // );
     const isCustomer = await this.contract.methods.isCustomer(address).call()
     console.log(isCustomer);
   },
 
   getCourierId: async function(){
-    if (!this.ethEnabled()) {
-        alert("Please install MetaMask to use this dApp!");
-      }
-    this.trackingABI = await (await fetch("./tracking.json")).json();
-    this.contract = new window.web3.eth.Contract(
-        this.trackingABI,
-        contract_address,
-    );
+    // if (!this.ethEnabled()) {
+    //     alert("Please install MetaMask to use this dApp!");
+    //   }
+    // this.trackingABI = await (await fetch("./tracking.json")).json();
+    // this.contract = new window.web3.eth.Contract(
+    //     this.trackingABI,
+    //     contract_address,
+    // );
 
     const courierId = await this.contract.methods.courierId().call();
     console.log(courierId);
@@ -131,28 +131,28 @@ const dApp = {
   },
 
   getCouriers: async function(id){
-    if (!this.ethEnabled()) {
-        alert("Please install MetaMask to use this dApp!");
-      }
-    this.trackingABI = await (await fetch("./tracking.json")).json();
-    this.contract = new window.web3.eth.Contract(
-        this.trackingABI,
-        contract_address,
-    );
+    // if (!this.ethEnabled()) {
+    //     alert("Please install MetaMask to use this dApp!");
+    //   }
+    // this.trackingABI = await (await fetch("./tracking.json")).json();
+    // this.contract = new window.web3.eth.Contract(
+    //     this.trackingABI,
+    //     contract_address,
+    // );
     const courierId = await this.contract.methods.couriers(id).call();
     console.log(courierId);
     // window.localStorage.setItem("courierId",courierId);
   },
 
   addCourier: async function(){
-    if (!this.ethEnabled()) {
-        alert("Please install MetaMask to use this dApp!");
-      }
-    this.trackingABI = await (await fetch("./tracking.json")).json();
-    this.contract = new window.web3.eth.Contract(
-        this.trackingABI,
-        contract_address,
-    );
+    // if (!this.ethEnabled()) {
+    //     alert("Please install MetaMask to use this dApp!");
+    //   }
+    // this.trackingABI = await (await fetch("./tracking.json")).json();
+    // this.contract = new window.web3.eth.Contract(
+    //     this.trackingABI,
+    //     contract_address,
+    // );
     // await this.contract.methods.addCourier(document.getElementById('addCourierLabel').value).send({from: sessionStorage.userAddress}).on('receipt', function(receipt){console.log(receipt)});
     var courierAddress = document.getElementById('addCourierLabel').value;
     var response = await this.contract.methods.addCourier(courierAddress).send({from:sessionStorage.userAddress}).then(function(receipt){
@@ -165,14 +165,6 @@ const dApp = {
   },
 
   viewCourier: async function(){
-    if (!this.ethEnabled()) {
-      alert("Please install MetaMask to use this dApp!");
-    }
-    this.trackingABI = await (await fetch("./tracking.json")).json();
-    this.contract = new window.web3.eth.Contract(
-        this.trackingABI,
-        contract_address,
-    );
     const courierId = await this.contract.methods.courierId().call();
 
     var table = document.getElementById('viewCourierTable')
@@ -192,15 +184,6 @@ const dApp = {
   },
 
   addCustomer: async function(){
-    if (!this.ethEnabled()) {
-        alert("Please install MetaMask to use this dApp!");
-      }
-    this.trackingABI = await (await fetch("./tracking.json")).json();
-    this.contract = new window.web3.eth.Contract(
-        this.trackingABI,
-        contract_address,
-    );
-    // await this.contract.methods.addCourier(document.getElementById('addCourierLabel').value).send({from: sessionStorage.userAddress}).on('receipt', function(receipt){console.log(receipt)});
     var customerAddress = document.getElementById('addCustomerLabel').value;
     var response = await this.contract.methods.addCustomer(customerAddress).send({from:sessionStorage.userAddress}).then(function(receipt){
       console.log(receipt);
@@ -210,14 +193,6 @@ const dApp = {
   },
 
   viewCustomer: async function(){
-    if (!this.ethEnabled()) {
-      alert("Please install MetaMask to use this dApp!");
-    }
-    this.trackingABI = await (await fetch("./tracking.json")).json();
-    this.contract = new window.web3.eth.Contract(
-        this.trackingABI,
-        contract_address,
-    );
     const customerId = await this.contract.methods.customerId().call();
 
     var table = document.getElementById('viewCustomerTable')
@@ -235,114 +210,92 @@ const dApp = {
     };
   },
 
+  addParcelAdmin: async function(){
+    var customerAddress = document.getElementById('addParcelLabel').value;
+    var response = await this.contract.methods.createParcel(customerAddress, 0).send({from:sessionStorage.userAddress}).then(function(receipt){
+      console.log(receipt);
+      document.getElementById('addParcelResponse').innerHTML = 'Parcel linked to customer.';
+    });
+
+  },
+
+  viewParcel: async function(){
+    const parcelId = await this.contract.methods.parcelId().call();
+    
+    // console.log(parcelAddress);
+    // console.log(parcelAddress['customerAddress']);
+    // console.log(await Object.values(this.contract.methods.parcel(1).call()));
+
+    var table = document.getElementById('viewParcelTable')
+    var rows = table.getElementsByTagName("tr").length
+
+    for(var j=rows-1; j>0; j--){
+      table.deleteRow(j);
+    };
+
+    for (var i=1; i<=parcelId; i++){
+      var parcelAddress = await this.contract.methods.parcel(i).call();
+      var row = table.insertRow()
+      var cell = row.insertCell();
+        cell.innerHTML = i;
+        cell = row.insertCell();
+        cell.innerHTML = parcelAddress['customerAddress'];
+    };
+  },
+
+  updateTrackingAdmin: async function(){
+    var parcelID = document.getElementById('updateTrackingIDLabel').value;
+    var trackingDetails = document.getElementById('updateTrackingDetailsLabel').value;
+    console.log(trackingDetails);
+
+    var response = await this.contract.methods.updateStatus(parcelID, trackingDetails, 'imageurl', 0).send({from:sessionStorage.userAddress}).then(function(receipt){
+      console.log(receipt);
+      document.getElementById('updateTrackingResponse').innerHTML = 'Parcel successfully updated.';
+    });
+
+  },
 
 
-//   parcelTracking: async function() {
+  trackParcel: async function(){  
+    var table = document.getElementById('trackParcelTable')
+    var rows = table.getElementsByTagName("tr").length
 
-// 	let caller1;
-// 	document.querySelector("#caller1").addEventListener('input', (event) => {
-// 		caller1 = event.target.value;
-// 	})
-// 	let courier;
-// 	document.querySelector("#courier").addEventListener('input', (event) => {
-// 		courier = event.target.value;
-// 	})
+    for(var j=rows-1; j>0; j--){
+      table.deleteRow(j);
+    };
 
-// 	document.querySelector("#buttonAddCourier").addEventListener('click', () => {
-// 		this.contract.methods.addCourier(courier).send({from: caller1}).on(
-// 			'receipt', function(receipt){
-// 				alert("Successfully courier added")
-// 			}
-// 		)
-// 	})
+    var parcelID = document.getElementById('trackParcelLabel').value;
+    console.log(parcelID);
+    
+    const events = await this.contract.getPastEvents('Status', {
+      fromBlock :0
+    });
+    console.log(events);
+    // console.log(Object.values(events)[0]);
 
-// 	let caller2;
-// 	document.querySelector("#caller2").addEventListener('input', (event) => {
-// 		caller2 = event.target.value;
-// 	})
-// 	let customer;
-// 	document.querySelector("#customer").addEventListener('input', (event) => {
-// 		customer = event.target.value;
-// 	})
-
-// 	document.querySelector("#buttonAddCustomer").addEventListener('click', () => {
-// 		this.contract.methods.addCustomer(customer).send({from: caller2}).on(
-// 			'receipt', function(receipt){
-// 				alert("Successfully customer added")
-// 			}
-// 		)
-// 	})
-
-// 	let caller3;
-// 	document.querySelector("#caller3").addEventListener('input', (event) => {
-// 		caller3 = event.target.value;
-// 	})
-// 	let parcelUri;
-// 	document.querySelector("#parcelUri").addEventListener('input', (event) => {
-// 		parcelUri = event.target.value;
-// 	})
-// 	let roleId1;
-// 	document.querySelector("#roleId1").addEventListener('input', (event) => {
-// 		roleId1 = event.target.value;
-// 	})
-
-	
-// 	document.querySelector("#registerParcel").addEventListener('click', () => {
-// 		this.contract.methods.registerParcel(parcelUri, roleId1).send({from: caller3}).on(
-// 			'receipt', function(receipt) {
-// 				alert("Successfully parcel registered")
-// 			}
-// 		)
-// 	})
-
-// 	let caller4;
-// 	document.querySelector("#caller4").addEventListener('input', (event) => {
-// 		caller4 = event.target.value;
-// 	})
-// 	let parcelId1;
-// 	document.querySelector("#parcelId1").addEventListener('input', (event) => {
-// 		parcelId1 = event.target.value;
-// 	})
-// 	let statusUri;
-// 	document.querySelector("#statusUri").addEventListener('input', (event) => {
-// 		statusUri = event.target.value;
-// 	})
-// 	let roleId2;
-// 	document.querySelector("#roleId2").addEventListener('input', (event) => {
-// 		roleId2 = event.target.value;
-// 	})
-
-// 	document.querySelector("#updateStatus").addEventListener('click', () => {
-// 		this.contract.methods.trackingUpdated(parcelId1, statusUri, roleId2).send({from: caller4}).on(
-// 			'receipt', function(receipt){
-// 				alert("Successfully tracking status updated")
-// 			}
-// 		)
-// 	})
-
-// 	let caller5;
-// 	document.querySelector("#caller5").addEventListener('input', (event) => {
-// 		caller5 = event.target.value;
-// 	})
-// 	let parcelId2;
-// 	document.querySelector("#parcelId2").addEventListener('input', (event) => {
-// 		parcelId2 = event.target.value;
-// 	})
-// 	let roleId3;
-// 	document.querySelector("#roleId3").addEventListener('input', (event) => {
-// 		roleId3 = event.target.value;
-// 	})
-
-// 	document.querySelector("#viewStatus").addEventListener('click', () => {
-// 		this.contract.methods.trackParcel(parcelId2, roleId3).send({from: caller5}).on(
-// 			'receipt', function(receipt){
-// 				alert("Successfully tracking status updated")
-// 			}
-// 		)
-// 	})
+    for (var i=0; i<events.length; i++){
+      if (Object.values(events)[i]['returnValues']['parcelId'] == parcelID){
+        console.log(Object.values(events)[i]['returnValues']['report']);
+        var row = table.insertRow()
+        var cell = row.insertCell();
+        cell.innerHTML = Object.values(events)[i]['returnValues']['report'];
+        cell = row.insertCell();
+        cell.innerHTML = 'Image Placeholder';
+      }
+    }
+  },
 
 
-//   },
+  // for (var i=1; i<=courierId; i++){
+  //   var row = table.insertRow()
+  //   var cell = row.insertCell();
+  //     cell.innerHTML = i;
+  //     cell = row.insertCell();
+  //     cell.innerHTML = await this.contract.methods.couriers(i).call();;
+  // };
+
+
+
   addCourierStyle: function(){
     document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action active");
     document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
@@ -354,15 +307,15 @@ const dApp = {
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
-    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8");
-    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCourierContent').setAttribute("class", "col");
+    document.getElementById('viewCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
 
   },
 
@@ -377,15 +330,15 @@ const dApp = {
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
     
-    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8");
-    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col");
+    document.getElementById('addCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
 
     dApp.viewCourier();
   },
@@ -401,15 +354,15 @@ const dApp = {
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
-    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8");
-    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
   },
 
   viewCustomerStyle: function(){
@@ -423,15 +376,15 @@ const dApp = {
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
-    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8");
-    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col");
+    document.getElementById('addParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
 
     dApp.viewCustomer();
   },
@@ -447,15 +400,15 @@ const dApp = {
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
-    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8");
-    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col");
+    document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
   },
 
   viewParcelStyle: function(){
@@ -469,15 +422,17 @@ const dApp = {
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
-    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8");
-    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col");
+    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
+
+    dApp.viewParcel()
   },
 
   registerParcelStyle: function(){
@@ -491,15 +446,15 @@ const dApp = {
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
-    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8");
-    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
   },
 
   updateTrackingStyle: function(){
@@ -513,15 +468,15 @@ const dApp = {
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action active");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
-    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8");
-    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8 collapse");
+    document.getElementById('addCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col");
+    document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
   },
 
   trackParcelStyle: function(){
@@ -535,15 +490,15 @@ const dApp = {
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action active");
 
-    document.getElementById('addCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCourierContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewCustomerContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('addParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('viewParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('updateTrackingContent').setAttribute("class", "col-sm-8 collapse");
-    document.getElementById('trackParcelContent').setAttribute("class", "col-sm-8");
+    document.getElementById('addCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCourierContent').setAttribute("class", "col collapse");
+    document.getElementById('addCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
+    document.getElementById('addParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
+    document.getElementById('trackParcelContent').setAttribute("class", "col");
   },
 
   main: async function() {

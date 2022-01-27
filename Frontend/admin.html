@@ -38,7 +38,7 @@
             <a href="#" class="list-group-item list-group-item-action" id="viewCustomer" onclick="dApp.viewCustomerStyle()">View Customers</a>
 
             <a href="#" class="list-group-item list-group-item-action" id="addParcel" onclick="dApp.addParcelStyle()">Add Parcels</a>
-            <a href="#" class="list-group-item list-group-item-action" id="viewParcel" onclick="dApp.viewParcelStyle()">View Parcel</a>
+            <a href="#" class="list-group-item list-group-item-action" id="viewParcel" onclick="dApp.viewParcelStyle()">View Parcels</a>
 
             <a href="#" class="list-group-item list-group-item-action" id="registerParcel" onclick="dApp.registerParcelStyle()">Register Parcel</a>
             <a href="#" class="list-group-item list-group-item-action" id="updateTracking" onclick="dApp.updateTrackingStyle()">Update Tracking</a>
@@ -98,13 +98,29 @@
 
         <div class="col collapse" id="addParcelContent">
           <h1 class="mb-3 pb-3">Add Parcel</h1> 
-
+          <form class="m-3 p-3">
+            <div class="mb-3">
+              <label for="addParcelLabel" class="form-label">Customer Address</label>
+              <input type="text" class="form-control" id="addParcelLabel" aria-describedby="emailHelp">
+              <div class="form-text mt-2">Enter the owner of the parcel.</div>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick=dApp.addParcelAdmin()>Add Customer</button>
+            <div class="form-text mt-2" id="addParcelResponse"></div>
+          </form>
         </div>
+
 
         <div class="col collapse" id="viewParcelContent">
-          <h1 class="mb-3 pb-3">View Parcel</h1> 
-
+          <h1 class="mb-3 pb-3">View Parcels</h1> 
+          <table class="table m-3 p-3" id="viewParcelTable">
+            <thead>
+              <tr class="table-dark"> 
+                <td>ID</td> <td>Address</td>
+              </tr>
+            </thead>
+          </table>
         </div>
+
 
         <div class="col collapse" id="registerParcelContent">
           <h1 class="mb-3 pb-3">Register Parcel</h1> 
@@ -113,19 +129,45 @@
 
         <div class="col collapse" id="updateTrackingContent">
           <h1 class="mb-3 pb-3">Update Tracking</h1> 
-
+          <form class="m-3 p-3">
+            <div class="mb-3">
+              <label for="updateTrackingIDLabel" class="form-label">Parcel ID</label>
+              <input type="text" class="form-control" id="updateTrackingIDLabel" aria-describedby="emailHelp">
+              <div class="form-text mt-2">Enter the customer ID of the parcel.</div>
+            </div>
+            <div class="mb-3">
+              <label for="updateTrackingDetailsLabel" class="form-label">Tracking Details</label>
+              <input type="text" class="form-control" id="updateTrackingDetailsLabel" aria-describedby="emailHelp">
+              <div class="form-text mt-2">Enter the tracking details of the parcel.</div>
+            </div>
+            <div class="mb-3">
+              <label for="updateTrackingImage" class="form-label">Upload Image</label>
+              <input class="form-control" type="file" id="updateTrackingImage" multiple>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick=dApp.updateTrackingAdmin()>Update Parcel</button>
+            <div class="form-text mt-2" id="updateTrackingResponse"></div>
+          </form>
         </div>
 
         <div class="col collapse" id="trackParcelContent">
           <h1 class="mb-3 pb-3">Track Parcel</h1> 
-
+          <form class="m-3 p-3">
+            <div class="mb-3">
+              <label for="trackParcelLabel" class="form-label">Parcel ID</label>
+              <input type="text" class="form-control" id="trackParcelLabel" aria-describedby="emailHelp">
+              <div class="form-text mt-2">Enter the customer ID of the parcel.</div>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick=dApp.trackParcel()>Track Parcel</button>
+            <div class="form-text mt-2" id="trackParcelResponse"></div>
+          </form>
+          <table class="table m-3 p-3" id="trackParcelTable">
+            <thead>
+              <tr class="table-dark"> 
+                <td>Status</td> <td>Image</td>
+              </tr>
+            </thead>
+          </table>
         </div>
-
-
-
-
-
-
       </div>
 
     </div>  
@@ -133,198 +175,7 @@
 
 
   <script language="javascript" type="text/javascript" src="functions.js"></script>
-  <!-- <script>
-    window.userAddress = null;
-    window.onload = async () => {
-      // Init Web3 connected to ETH network
-      if (window.ethereum) {
-        window.web3 = new Web3(window.ethereum);
-      } else {
-        alert("No ETH brower extension detected.");
-      }
 
-      // Load in Localstore key
-      window.userAddress = window.localStorage.getItem("userAddress");
-      //showAddress();
-    };
-
-document.getElementById(
-        "userAddress"
-      ).innerText = `${(window.userAddress)}`;
-      document.getElementById("logoutButton").classList.remove("hidden");
-      
-    // Display or remove the users know address on the frontend
-    function showAddress() {
-      if (!window.userAddress) {
-        document.getElementById("userAddress").innerText = "";
-        document.getElementById("logoutButton").classList.add("hidden");
-        return false;
-      }
-
-      document.getElementById(
-        "userAddress"
-      ).innerText = `ETH Address: ${(window.userAddress)}`;
-      document.getElementById("logoutButton").classList.remove("hidden");
-    }
-
-    function addCourier(){
-      document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action active");
-      document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-    }
-
-    function viewCourier(){
-      document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action active");
-      document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-    }
-
-    function addCustomer(){
-      document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action active");
-      document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-    }
-    function viewCustomer(){
-      document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action active");
-      document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-    }
-    function addParcel(){
-      document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action active");
-      document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-    }
-    function viewParcel(){
-      document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action active");
-      document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-    }
-    function registerParcel(){
-      document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action active");
-      document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-    }
-    function updateTracking(){
-      document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action active");
-      document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
-    }
-    function trackParcel(){
-      document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-      document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action active");
-    }
-
-
-
-    
-
-    // remove stored user address and reset frontend
-    function logout() {
-      window.userAddress = null;
-      window.localStorage.removeItem("userAddress");
-      landingPage();
-    }
-    function landingPage(){
-      window.location.href = 'index.html';
-    }
-
-    function adminPage(){
-      window.location.href = 'admin.html';
-    }
-
-    function courierPage(){
-      window.location.href = 'courier.html';
-    }
-
-    function customerPage(){
-      window.location.href = 'customer.html';
-    }
-
-    function accountNotFound(){
-      document.getElementById("userAddress").innerText = "This address was not found in the contract, Try again!";
-    }
-
-    // Login with Web3 via Metamasks window.ethereum library
-    async function loginWithEth() {
-      if (window.web3) {
-        try {
-          // We use this since ethereum.enable() is deprecated. This method is not
-          // available in Web3JS - so we call it directly from metamasks' library
-          const selectedAccount = await window.ethereum
-            .request({
-              method: "eth_requestAccounts",
-            })
-            .then((accounts) => accounts[0])
-            .catch(() => {
-              throw Error("No account selected!");
-            });
-          window.userAddress = selectedAccount;
-          window.localStorage.setItem("userAddress", selectedAccount);
-          // showAddress();
-          adminPage()
-        } catch (error) {
-          console.error(error);
-        }
-      } else {
-        alert("No ETH brower extension detected.");
-      }
-    }
-    </script> -->
 </body>
 
 

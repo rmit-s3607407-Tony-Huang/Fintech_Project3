@@ -17,43 +17,17 @@
 			{
 				"indexed": false,
 				"internalType": "string",
-				"name": "parcelUri",
+				"name": "report",
 				"type": "string"
-			}
-		],
-		"name": "parcelRegistered",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "parcelId",
-				"type": "uint256"
 			},
 			{
 				"indexed": false,
 				"internalType": "string",
-				"name": "statusUri",
+				"name": "imageURL",
 				"type": "string"
 			}
 		],
-		"name": "statusUpdated",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "status",
-				"type": "string"
-			}
-		],
-		"name": "track",
+		"name": "Status",
 		"type": "event"
 	},
 	{
@@ -123,6 +97,26 @@
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "customerAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "role_id",
+				"type": "uint256"
+			}
+		],
+		"name": "createParcel",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [],
 		"name": "customerId",
@@ -160,13 +154,7 @@
 	},
 	{
 		"constant": true,
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "userAddress",
-				"type": "address"
-			}
-		],
+		"inputs": [],
 		"name": "isAdmin",
 		"outputs": [
 			{
@@ -181,13 +169,7 @@
 	},
 	{
 		"constant": true,
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "userAddress",
-				"type": "address"
-			}
-		],
+		"inputs": [],
 		"name": "isCourier",
 		"outputs": [
 			{
@@ -202,13 +184,7 @@
 	},
 	{
 		"constant": true,
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "userAddress",
-				"type": "address"
-			}
-		],
+		"inputs": [],
 		"name": "isCustomer",
 		"outputs": [
 			{
@@ -233,9 +209,14 @@
 		"name": "parcel",
 		"outputs": [
 			{
-				"internalType": "string",
-				"name": "parcelUri",
-				"type": "string"
+				"internalType": "address",
+				"name": "customerAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "statusId",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -261,8 +242,18 @@
 		"constant": false,
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "_parcelId",
+				"type": "uint256"
+			},
+			{
 				"internalType": "string",
-				"name": "_parcelUri",
+				"name": "report",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "imageURL",
 				"type": "string"
 			},
 			{
@@ -271,67 +262,7 @@
 				"type": "uint256"
 			}
 		],
-		"name": "registerParcel",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "statusId",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_parcelId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "role_id",
-				"type": "uint256"
-			}
-		],
-		"name": "trackParcel",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_parcelId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "_statusUri",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "role_id",
-				"type": "uint256"
-			}
-		],
-		"name": "trackingUpdated",
+		"name": "updateStatus",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
