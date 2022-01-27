@@ -1,59 +1,88 @@
-const contract_address = "0x857F15AEAa6c54eE088Be09E0780951ecD23Eed8";
+const contract_address = "0x957A89C95968C7641c119b53824e189a34908d22";
+
+// const getBlockchainInformation = async () => {
+// 	if (window.ethereum) {
+// 	  console.log("Metamask");
+// 	  window.web3 = new Web3(window.ethereum);
+// 	  await window.ethereum.enable();
+// 	  const ethereum = window.ethereum;
+// 	  const walletAddress = ethereum.selectedAddress;
+// 	  console.log("Wallet address", walletAddress);
+// 	} else if (window.web3) {
+// 	  console.log("Update metamask");
+// 	  alert("Update metamask");
+// 	} else {
+// 	  console.log("Install metamask");
+// 	  alert("Install metamask");
+// 	}
+//   };
+function getMetamaskAddress(){
+	if (window.ethereum) {
+	  console.log("Metamask");
+	  window.web3 = new Web3(window.ethereum);
+	  await window.ethereum.enable();
+	  const ethereum = window.ethereum;
+	  const walletAddress = ethereum.selectedAddress;
+	  console.log("Wallet address", walletAddress);
+	} else if (window.web3) {
+	  console.log("Update metamask");
+	  alert("Update metamask");
+	} else {
+	  console.log("Install metamask");
+	  alert("Install metamask");
+	}
+}
 
 const dApp = {
-  
   ethEnabled: function() {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
       window.ethereum.enable();
-	 
       return true;
     }
     return false;
   },
 
   parcelTracking: async function() {
-	
-	const ethereum = window.ethereum;
-	let walletAddress = ethereum.selectedAddress;
 
+	let caller1;
+	document.querySelector("#caller1").addEventListener('input', (event) => {
+		caller1 = event.target.value;
+	})
 	let courier;
 	document.querySelector("#courier").addEventListener('input', (event) => {
 		courier = event.target.value;
 	})
 
 	document.querySelector("#buttonAddCourier").addEventListener('click', () => {
-		this.contract.methods.addCourier(courier).send({from: walletAddress}).on(
+		this.contract.methods.addCourier(courier).send({from: caller1}).on(
 			'receipt', function(receipt){
-				alert("Successfully courier added");
+				alert("Successfully courier added")
 			}
 		)
-		this.contract.events.renderCourierId({fromBlock: 0}).on('data', function(event) {
-			const selectElement = document.querySelector('#addCourierLog');
-			selectElement.innerHTML = event.returnValues["_courierId"]
-		})
-			
 	})
-	
 
+	let caller2;
+	document.querySelector("#caller2").addEventListener('input', (event) => {
+		caller2 = event.target.value;
+	})
 	let customer;
 	document.querySelector("#customer").addEventListener('input', (event) => {
 		customer = event.target.value;
 	})
 
 	document.querySelector("#buttonAddCustomer").addEventListener('click', () => {
-		this.contract.methods.addCustomer(customer).send({from: walletAddress}).on(
+		this.contract.methods.addCustomer(customer).send({from: caller2}).on(
 			'receipt', function(receipt){
 				alert("Successfully customer added")
 			}
 		)
-		this.contract.events.renderCustomerId({fromBlock: 0}).on('data', function(event) {
-			const selectElement = document.querySelector('#addCustomerLog');
-			selectElement.innerHTML = event.returnValues["_customerId"]	
-		})
-		
 	})
 
+	let caller3;
+	document.querySelector("#caller3").addEventListener('input', (event) => {
+		caller3 = event.target.value;
+	})
 	let parcelUri;
 	document.querySelector("#parcelUri").addEventListener('input', (event) => {
 		parcelUri = event.target.value;
@@ -65,19 +94,17 @@ const dApp = {
 
 	
 	document.querySelector("#registerParcel").addEventListener('click', () => {
-		this.contract.methods.registerParcel(parcelUri, roleId1).send({from: walletAddress}).on(
+		this.contract.methods.registerParcel(parcelUri, roleId1).send({from: caller3}).on(
 			'receipt', function(receipt) {
 				alert("Successfully parcel registered")
 			}
 		)
-		this.contract.events.parcelRegistered({fromBlock: 0}).on('data', function(event) {
-			console.log(event.returnValues["parcelId"])
-			const selectElement = document.querySelector('#parcelLog');
-			selectElement.innerHTML = event.returnValues["parcelId"];
-		})
 	})
 
-
+	let caller4;
+	document.querySelector("#caller4").addEventListener('input', (event) => {
+		caller4 = event.target.value;
+	})
 	let parcelId1;
 	document.querySelector("#parcelId1").addEventListener('input', (event) => {
 		parcelId1 = event.target.value;
@@ -92,14 +119,17 @@ const dApp = {
 	})
 
 	document.querySelector("#updateStatus").addEventListener('click', () => {
-		this.contract.methods.trackingUpdated(parcelId1, statusUri, roleId2).send({from: walletAddress}).on(
+		this.contract.methods.trackingUpdated(parcelId1, statusUri, roleId2).send({from: caller4}).on(
 			'receipt', function(receipt){
 				alert("Successfully tracking status updated")
 			}
 		)
 	})
 
-	
+	let caller5;
+	document.querySelector("#caller5").addEventListener('input', (event) => {
+		caller5 = event.target.value;
+	})
 	let parcelId2;
 	document.querySelector("#parcelId2").addEventListener('input', (event) => {
 		parcelId2 = event.target.value;
@@ -110,24 +140,11 @@ const dApp = {
 	})
 
 	document.querySelector("#viewStatus").addEventListener('click', () => {
-		this.contract.methods.trackParcel(parcelId2, roleId3).send({from: walletAddress}).on(
-			'receipt', function(receipt){	
-			})
-		
-		const view = document.querySelector("#view");
-		let container = `<div id="container"></div> `;
-		view.insertAdjacentHTML('afterend', container);
-		container = document.querySelector("#container")
-		this.contract.events.track().on('data', function(event) {
-			const child = document.createElement('div');
-			child.innerHTML = event.returnValues['status'];
-			container.appendChild(child);
-			console.log(event.returnValues['status']);
-		})
-		setTimeout(() => {
-			container.remove();
-		}, 10000)
-	
+		this.contract.methods.trackParcel(parcelId2, roleId3).send({from: caller5}).on(
+			'receipt', function(receipt){
+				alert("Successfully tracking status updated")
+			}
+		)
 	})
 
 
