@@ -159,7 +159,13 @@
 	},
 	{
 		"constant": true,
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "userAdresss",
+				"type": "address"
+			}
+		],
 		"name": "isAdmin",
 		"outputs": [
 			{
@@ -174,7 +180,13 @@
 	},
 	{
 		"constant": true,
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "userAdresss",
+				"type": "address"
+			}
+		],
 		"name": "isCourier",
 		"outputs": [
 			{
@@ -189,7 +201,13 @@
 	},
 	{
 		"constant": true,
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "userAdresss",
+				"type": "address"
+			}
+		],
 		"name": "isCustomer",
 		"outputs": [
 			{
