@@ -1,4 +1,6 @@
-const contract_address = "0xf129D6c8c2a8cDF532d36E765bC600b1e4879f85";
+const contract_address = "0x1Dc80859afAeb604428205727E0661aA9407ca9c";
+let statusUri;
+
 const dApp = {
   ethEnabled: function() {
     if (window.ethereum) {
@@ -14,7 +16,6 @@ const dApp = {
   
   adminPage: function(){
     window.location.href = 'admin.html';
-    // dApp.showAddress();
   },
 
   courierPage: function(){
@@ -72,96 +73,41 @@ const dApp = {
       }
 
       document.getElementById("userAddress").innerText = `${(sessionStorage.userAddress)}`;
-    //   document.getElementById("logoutButton").classList.remove("hidden");
     },
 
 
   isAdmin: async function(address){
-    // if (!this.ethEnabled()) {
-    //     alert("Please install MetaMask to use this dApp!");
-    //   }
-    // this.trackingABI = await (await fetch("./tracking.json")).json();
-    // this.contract = new window.web3.eth.Contract(
-    //     this.trackingABI,
-    //     contract_address,
-    // );
     const isAdmin = await this.contract.methods.isAdmin(address).call()
     console.log(isAdmin);
   },
 
   isCourier: async function(address){
-    // if (!this.ethEnabled()) {
-    //     alert("Please install MetaMask to use this dApp!");
-    //   }
-    // this.trackingABI = await (await fetch("./tracking.json")).json();
-    // this.contract = new window.web3.eth.Contract(
-    //     this.trackingABI,
-    //     contract_address,
-    // );
     const isCourier = await this.contract.methods.isCourier(address).call()
     console.log(isCourier);
   },
 
   isCustomer: async function(address){
-    // if (!this.ethEnabled()) {
-    //     alert("Please install MetaMask to use this dApp!");
-    //   }
-    // this.trackingABI = await (await fetch("./tracking.json")).json();
-    // this.contract = new window.web3.eth.Contract(
-    //     this.trackingABI,
-    //     contract_address,
-    // );
     const isCustomer = await this.contract.methods.isCustomer(address).call()
     console.log(isCustomer);
   },
 
   getCourierId: async function(){
-    // if (!this.ethEnabled()) {
-    //     alert("Please install MetaMask to use this dApp!");
-    //   }
-    // this.trackingABI = await (await fetch("./tracking.json")).json();
-    // this.contract = new window.web3.eth.Contract(
-    //     this.trackingABI,
-    //     contract_address,
-    // );
-
     const courierId = await this.contract.methods.courierId().call();
     console.log(courierId);
     window.localStorage.setItem("courierId",courierId);
   },
 
   getCouriers: async function(id){
-    // if (!this.ethEnabled()) {
-    //     alert("Please install MetaMask to use this dApp!");
-    //   }
-    // this.trackingABI = await (await fetch("./tracking.json")).json();
-    // this.contract = new window.web3.eth.Contract(
-    //     this.trackingABI,
-    //     contract_address,
-    // );
     const courierId = await this.contract.methods.couriers(id).call();
     console.log(courierId);
-    // window.localStorage.setItem("courierId",courierId);
   },
 
   addCourier: async function(){
-    // if (!this.ethEnabled()) {
-    //     alert("Please install MetaMask to use this dApp!");
-    //   }
-    // this.trackingABI = await (await fetch("./tracking.json")).json();
-    // this.contract = new window.web3.eth.Contract(
-    //     this.trackingABI,
-    //     contract_address,
-    // );
-    // await this.contract.methods.addCourier(document.getElementById('addCourierLabel').value).send({from: sessionStorage.userAddress}).on('receipt', function(receipt){console.log(receipt)});
     var courierAddress = document.getElementById('addCourierLabel').value;
     var response = await this.contract.methods.addCourier(courierAddress).send({from:sessionStorage.userAddress}).then(function(receipt){
       console.log(receipt);
       document.getElementById('addCourierResponse').innerHTML = 'Address added successfully.';
     });
-    // console.log(response);
-    // const courierId = await this.contract.methods.couriers(id).call();
-    // document.getElementById('form-addCourierResponse').innerHTML = string;
   },
 
   viewCourier: async function(){
@@ -212,7 +158,7 @@ const dApp = {
 
   addParcelAdmin: async function(){
     var customerAddress = document.getElementById('addParcelLabel').value;
-    var response = await this.contract.methods.createParcel(customerAddress, 0).send({from:sessionStorage.userAddress}).then(function(receipt){
+    var response = await this.contract.methods.createParcel(customerAddress, 0,'bafkreib7uwuek7za6meleucxd42trdnugd5aob6w3nu2sr2te3item4bua').send({from:sessionStorage.userAddress}).then(function(receipt){
       console.log(receipt);
       document.getElementById('addParcelResponse').innerHTML = 'Parcel linked to customer.';
     });
@@ -246,13 +192,54 @@ const dApp = {
   updateTrackingAdmin: async function(){
     var parcelID = document.getElementById('updateTrackingIDLabel').value;
     var trackingDetails = document.getElementById('updateTrackingDetailsLabel').value;
+    var imageURL = null;
     console.log(trackingDetails);
 
-    var response = await this.contract.methods.updateStatus(parcelID, trackingDetails, 'imageurl', 0).send({from:sessionStorage.userAddress}).then(function(receipt){
+    // var response = await this.contract.methods.updateStatus(parcelID, trackingDetails, 'imageurl', 0).send({from:sessionStorage.userAddress}).then(function(receipt){
+    //   console.log(receipt);
+    //   document.getElementById('updateTrackingResponse').innerHTML = 'Parcel successfully updated.';
+    // });
+    const image = document.getElementById('updateTrackingImage');
+
+    const pinata_api_key = "c60c20f848f8490bc51b";
+    const pinata_secret_api_key = "66435784d425667f5cc6e8331ab540683bc96ea6253e46ab7ae14431534ccef1";
+
+    console.log(image, pinata_api_key, pinata_secret_api_key);
+
+      if (!image) {
+        M.toast({ html: "Please fill out then entire form!" });
+        return;
+      }
+
+      const image_data = new FormData();
+      image_data.append("file", image.files[0]);
+      image_data.append("pinataOptions", JSON.stringify({cidVersion: 1}));
+
+      console.log(image_data);
+
+      try {
+        M.toast({ html: "Uploading Image to IPFS via Pinata..." });
+        const image_upload_response = await fetch("https://api.pinata.cloud/pinning/pinFileToIPFS", {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            pinata_api_key,
+            pinata_secret_api_key
+          },
+          body: image_data,
+        });
+
+        const image_hash = await image_upload_response.json();
+        // console.log(image_hash);
+        imageURL = `${image_hash.IpfsHash}`;
+      } catch (e) {
+        alert("ERROR:", JSON.stringify(e));
+      }
+      console.log(imageURL);
+    var response = await this.contract.methods.updateStatus(parcelID, trackingDetails, imageURL, 0).send({from:sessionStorage.userAddress}).then(function(receipt){
       console.log(receipt);
       document.getElementById('updateTrackingResponse').innerHTML = 'Parcel successfully updated.';
     });
-
   },
 
 
@@ -280,19 +267,27 @@ const dApp = {
         var cell = row.insertCell();
         cell.innerHTML = Object.values(events)[i]['returnValues']['report'];
         cell = row.insertCell();
-        cell.innerHTML = 'Image Placeholder';
+        if (Object.values(events)[i]['returnValues']['imageURL'] == "undefined"){
+          cell.innerHTML =  `<img src="https://gateway.pinata.cloud/ipfs/bafkreicmictvqf3etercz7klkqyuihxqlqio2phbykf7tmhitlpnkpqdaq" style="width: 500px" />`;
+        }
+        else{
+          const renderItem = (imageURL) => `<img src="https://gateway.pinata.cloud/ipfs/${imageURL}" style="width: 500px" />`;
+          cell.innerHTML = renderItem(Object.values(events)[i]['returnValues']['imageURL'])
+        }
+
+       
       }
     }
   },
 
 
-  // for (var i=1; i<=courierId; i++){
-  //   var row = table.insertRow()
-  //   var cell = row.insertCell();
-  //     cell.innerHTML = i;
-  //     cell = row.insertCell();
-  //     cell.innerHTML = await this.contract.methods.couriers(i).call();;
-  // };
+  getEvents: async function(){  
+    const events = await this.contract.getPastEvents('Status', {
+      fromBlock :0
+    });
+    console.log(events);
+
+  },
 
 
 
@@ -303,7 +298,7 @@ const dApp = {
     document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    // document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
@@ -313,7 +308,7 @@ const dApp = {
     document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
     document.getElementById('addParcelContent').setAttribute("class", "col collapse");
     document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    // document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
     document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
     document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
 
@@ -326,7 +321,7 @@ const dApp = {
     document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    // document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
     
@@ -336,7 +331,7 @@ const dApp = {
     document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
     document.getElementById('addParcelContent').setAttribute("class", "col collapse");
     document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    // document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
     document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
     document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
 
@@ -350,7 +345,7 @@ const dApp = {
     document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    // document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
@@ -360,7 +355,7 @@ const dApp = {
     document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
     document.getElementById('addParcelContent').setAttribute("class", "col collapse");
     document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    // document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
     document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
     document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
   },
@@ -372,7 +367,7 @@ const dApp = {
     document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action active");
     document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    // document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
@@ -382,7 +377,7 @@ const dApp = {
     document.getElementById('viewCustomerContent').setAttribute("class", "col");
     document.getElementById('addParcelContent').setAttribute("class", "col collapse");
     document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    // document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
     document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
     document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
 
@@ -396,7 +391,7 @@ const dApp = {
     document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action active");
     document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    // document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
@@ -406,7 +401,7 @@ const dApp = {
     document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
     document.getElementById('addParcelContent').setAttribute("class", "col");
     document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    // document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
     document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
     document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
   },
@@ -418,7 +413,7 @@ const dApp = {
     document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action active");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    // document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
@@ -428,34 +423,34 @@ const dApp = {
     document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
     document.getElementById('addParcelContent').setAttribute("class", "col collapse");
     document.getElementById('viewParcelContent').setAttribute("class", "col");
-    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    // document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
     document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
     document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
 
     dApp.viewParcel()
   },
 
-  registerParcelStyle: function(){
-    document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action active");
-    document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
+  // registerParcelStyle: function(){
+  //   document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
+  //   document.getElementById('viewCourier').setAttribute("class", "list-group-item list-group-item-action");
+  //   document.getElementById('addCustomer').setAttribute("class", "list-group-item list-group-item-action");
+  //   document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
+  //   document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
+  //   document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
+  //   document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action active");
+  //   document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
+  //   document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
-    document.getElementById('addCourierContent').setAttribute("class", "col collapse");
-    document.getElementById('viewCourierContent').setAttribute("class", "col collapse");
-    document.getElementById('addCustomerContent').setAttribute("class", "col collapse");
-    document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
-    document.getElementById('addParcelContent').setAttribute("class", "col collapse");
-    document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col");
-    document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
-    document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
-  },
+  //   document.getElementById('addCourierContent').setAttribute("class", "col collapse");
+  //   document.getElementById('viewCourierContent').setAttribute("class", "col collapse");
+  //   document.getElementById('addCustomerContent').setAttribute("class", "col collapse");
+  //   document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
+  //   document.getElementById('addParcelContent').setAttribute("class", "col collapse");
+  //   document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
+  //   document.getElementById('registerParcelContent').setAttribute("class", "col");
+  //   document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
+  //   document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
+  // },
 
   updateTrackingStyle: function(){
     document.getElementById('addCourier').setAttribute("class", "list-group-item list-group-item-action");
@@ -464,7 +459,7 @@ const dApp = {
     document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    // document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action active");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action");
 
@@ -474,7 +469,7 @@ const dApp = {
     document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
     document.getElementById('addParcelContent').setAttribute("class", "col collapse");
     document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    // document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
     document.getElementById('updateTrackingContent').setAttribute("class", "col");
     document.getElementById('trackParcelContent').setAttribute("class", "col collapse");
   },
@@ -486,7 +481,7 @@ const dApp = {
     document.getElementById('viewCustomer').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('addParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('viewParcel').setAttribute("class", "list-group-item list-group-item-action");
-    document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
+    // document.getElementById('registerParcel').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('updateTracking').setAttribute("class", "list-group-item list-group-item-action");
     document.getElementById('trackParcel').setAttribute("class", "list-group-item list-group-item-action active");
 
@@ -496,7 +491,7 @@ const dApp = {
     document.getElementById('viewCustomerContent').setAttribute("class", "col collapse");
     document.getElementById('addParcelContent').setAttribute("class", "col collapse");
     document.getElementById('viewParcelContent').setAttribute("class", "col collapse");
-    document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
+    // document.getElementById('registerParcelContent').setAttribute("class", "col collapse");
     document.getElementById('updateTrackingContent').setAttribute("class", "col collapse");
     document.getElementById('trackParcelContent').setAttribute("class", "col");
   },

@@ -108,6 +108,11 @@
 				"internalType": "uint256",
 				"name": "role_id",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "imageURL",
+				"type": "string"
 			}
 		],
 		"name": "createParcel",
