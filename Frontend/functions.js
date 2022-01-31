@@ -478,6 +478,7 @@ const dApp = {
   },
 
   addParcelCourier: async function(){
+    await dApp.getCourierNumber();
     var customerAddress = document.getElementById('addParcelLabel').value;
     var response = await this.contract.methods.createParcel(customerAddress, sessionStorage.courierNumber,'bafkreib7uwuek7za6meleucxd42trdnugd5aob6w3nu2sr2te3item4bua').send({from:sessionStorage.userAddress}).then(function(receipt){
       console.log(receipt);
@@ -586,6 +587,7 @@ const dApp = {
 
 
   updateTrackingCourier: async function(){
+    await dApp.getCourierNumber();
     var parcelID = document.getElementById('updateTrackingIDLabel').value;
     var trackingDetails = document.getElementById('updateTrackingDetailsLabel').value;
     var imageURL = null;
@@ -660,7 +662,7 @@ const dApp = {
         cell.innerHTML = Object.values(events)[i]['returnValues']['report'];
         cell = row.insertCell();
         if (Object.values(events)[i]['returnValues']['imageURL'] == "undefined"){
-          cell.innerHTML =  `<img src="https://gateway.pinata.cloud/ipfs/bafkreicmictvqf3etercz7klkqyuihxqlqio2phbykf7tmhitlpnkpqdaq" style="width: 500px" />`;
+          cell.innerHTML =  `<img src="https://gateway.pinata.cloud/ipfs/bafkreicmictvqf3etercz7klkqyuihxqlqio2phbykf7tmhitlpnkpqdaq" style="width: 200px" />`;
         }
         else{
           const renderItem = (imageURL) => `<img src="https://gateway.pinata.cloud/ipfs/${imageURL}" style="width: 500px" />`;
@@ -704,7 +706,7 @@ const dApp = {
           cell.innerHTML = Object.values(events)[i]['returnValues']['report'];
           cell = row.insertCell();
           if (Object.values(events)[i]['returnValues']['imageURL'] == "undefined"){
-            cell.innerHTML =  `<img src="https://gateway.pinata.cloud/ipfs/bafkreicmictvqf3etercz7klkqyuihxqlqio2phbykf7tmhitlpnkpqdaq" style="width: 500px" />`;
+            cell.innerHTML =  `<img src="https://gateway.pinata.cloud/ipfs/bafkreicmictvqf3etercz7klkqyuihxqlqio2phbykf7tmhitlpnkpqdaq" style="width: 200px" />`;
           }
           else{
             const renderItem = (imageURL) => `<img src="https://gateway.pinata.cloud/ipfs/${imageURL}" style="width: 500px" />`;
@@ -736,7 +738,7 @@ const dApp = {
 
     this.trackingABI = await (await fetch("./tracking.json")).json();
 
-    this.contract = new window.web3.eth.Contract(
+    this.contract = await new window.web3.eth.Contract(
       this.trackingABI,
       contract_address,
      // { defaultAccount: this.accounts[0] }
