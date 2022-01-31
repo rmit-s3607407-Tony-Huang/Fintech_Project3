@@ -1,4 +1,5 @@
-const contract_address = "0x2c785d995930FCa772405f3BcE435A18F544c7D7";
+// const contract_address = "0x2c785d995930FCa772405f3BcE435A18F544c7D7";
+const contract_address = "0x10482739e23713dE10219f1dB5Cc401A7D8ffD7B";
 let statusUri;
 
 const adminStyles = {
